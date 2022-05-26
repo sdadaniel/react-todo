@@ -12,7 +12,7 @@ const Wrap = styled.div`
     color: #161616;
     font-size: 18px;
     line-height: 22px;
-    height: 20px;
+    min-height: 20px;
     font-weight: 700;
     margin: 10px 0px;
   }

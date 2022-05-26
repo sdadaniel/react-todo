@@ -1,5 +1,41 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+
+const MainMenu = ({
+  menus = [],
+  selectedCategory = "",
+  setSelectedCategory,
+  setSubMenuIndex,
+}) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const onClick = (menu) => {
+    setSelectedCategory(menu.value);
+    dispatch(setSubMenuIndex(0));
+    navigate(`/category/${menu.value}`);
+  };
+
+  return (
+    <>
+      {selectedCategory && (
+        <CategoryList>
+          <ul>
+            {menus.map((menu, index) => (
+              <li
+                className={menu.value === selectedCategory ? "active" : ""}
+                key={index}
+                onClick={() => onClick(menu)}
+              >
+                {menu.name}
+              </li>
+            ))}
+          </ul>
+        </CategoryList>
+      )}
+    </>
+  );
+};
 
 const CategoryList = styled.div`
   ul {
@@ -34,38 +70,5 @@ const CategoryList = styled.div`
   //     }
   //   }
 `;
-const MainMenu = ({
-  menus = [],
-  selectedCategory = "",
-  setselectedCategory = () => null,
-  setSubMenuIndex,
-}) => {
-  const navigate = useNavigate();
-  const onClick = (menu) => {
-    setselectedCategory(menu.value);
-    setSubMenuIndex(0);
-    navigate(`/category/${menu.value}`);
-  };
-
-  return (
-    <>
-      {selectedCategory && (
-        <CategoryList>
-          <ul>
-            {menus.map((menu, index) => (
-              <li
-                className={menu.value === selectedCategory ? "active" : ""}
-                key={index}
-                onClick={() => onClick(menu)}
-              >
-                {menu.name}
-              </li>
-            ))}
-          </ul>
-        </CategoryList>
-      )}
-    </>
-  );
-};
 
 export default MainMenu;
