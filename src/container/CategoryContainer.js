@@ -14,11 +14,11 @@ const CategoryContainer = () => {
   const dispatch = useDispatch();
 
   useSelector((state) => {
-    return state.categoryReducer;
+    return state.category;
   });
 
   const { selectedCategory, categoryData, subMenuIndex } = useSelector(
-    (state) => state.categoryReducer
+    (state) => state.category
   );
 
   useEffect(() => {
