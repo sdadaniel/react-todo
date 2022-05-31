@@ -34,7 +34,6 @@ const SubCategory = styled.div`
 
 const SubMenu = ({ submenu = [], subMenuIndex, setSubMenuIndex }) => {
   const onClick = (index) => {
-    console.log(index);
     setSubMenuIndex(index);
 
     const categoryList = document.querySelectorAll(".category_wrap");

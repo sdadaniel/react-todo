@@ -5,15 +5,20 @@ import {
   setCategoryData,
   setSelectedCategory,
   setSubMenuIndex,
-} from "../modules/category";
+} from "../redux/categoryReducer";
 import SubMenu from "../components/pages/category/SubMenu";
 import { useEffect } from "react";
 import Categories from "../components/pages/category/Categories";
 
 const CategoryContainer = () => {
   const dispatch = useDispatch();
+
+  useSelector((state) => {
+    return state.categoryReducer;
+  });
+
   const { selectedCategory, categoryData, subMenuIndex } = useSelector(
-    (state) => state.category
+    (state) => state.categoryReducer
   );
 
   useEffect(() => {
